@@ -12,15 +12,15 @@ import minesweeper.game.Game;
  * @author Edison Zapata Henao.
  */
 public class Console {
-    public Reader r;
-    public Writer w;
+    public Reader reader;
+    public Writer writer;
     
     /**Creates a instance of the Console User Interface.
      *
      */
     public Console(){
-        r = new Reader();
-        w = new Writer();
+        reader = new Reader();
+        writer = new Writer();
     }
     
     /** Using the string that the user inputs, start a movement in the current 
@@ -30,11 +30,13 @@ public class Console {
      * @param g The game that the movement will affect.
      */
     public void play(String move, Game g){
-        String[] values = move.split(" ");
-        int x = Integer.parseInt(values[0]);
-        int y = Integer.parseInt(values[1]);
-        String m = values[2];
-        g.play(x, y, m);
+        try{
+            String[] values = move.split(" ");
+            int x = Integer.parseInt(values[0]);
+            int y = Integer.parseInt(values[1]);
+            String m = values[2];
+            g.play(x, y, m);
+        }catch(Exception e){}
     }
     
 }

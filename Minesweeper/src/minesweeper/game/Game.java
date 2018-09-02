@@ -35,6 +35,15 @@ public class Game {
      *              mark.
      */
     public void play(int x, int y, String move){
+        if(x >= board.board.length || y >= board.board[0].length){
+            return; //Move out of board limits
+        }
+        if(x<0 || y<0){
+            return; //Move out of board limits
+        }
+        if(!(move.equals("U") || move.equals("M"))){
+            return; //Invalid movement
+        }
         if(this.mask.mask[x][y]==1){
             return;
         }else{
@@ -70,8 +79,6 @@ public class Game {
                         }
                     }
                 }
-            }else{
-                //Invalid move
             }
         }
     }
@@ -89,9 +96,8 @@ public class Game {
             }
             coveredMines &= this.mask.mask[mine.row][mine.column]==2;
         }
-        System.out.println(mask.marksAmmount);
         return !(coveredMines && 
-                this.mask.marksAmmount==this.board.minesAccount);
+                this.mask.marksAmmount==this.board.minesAmmount);
     }
     
     /**

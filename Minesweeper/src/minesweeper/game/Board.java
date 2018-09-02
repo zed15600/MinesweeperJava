@@ -12,7 +12,7 @@ import java.util.Random;
  * @author Edison Zapata Henao.
  */
 public class Board {
-    protected int minesAccount;
+    protected int minesAmmount;
     protected GameObject[] mines;
     protected GameObject[][] board;
     
@@ -24,8 +24,8 @@ public class Board {
      *              board.
      */
     public Board(int rows, int cols, int mines){
-        this.minesAccount = mines;
-        this.mines = new GameObject[minesAccount];
+        this.minesAmmount = mines;
+        this.mines = new GameObject[minesAmmount];
         this.board = new GameObject[rows][cols];
         Random rndm = new Random();
         //Placing the mines

@@ -21,19 +21,31 @@ public class Minesweeper {
         // TODO code application logic here
         Console c = new Console();
         Game g;
-        {
-            String line = c.r.read();
-            String[] values = line.split(" ");
-            int rows = Integer.parseInt(values[0]);
-            int cols = Integer.parseInt(values[1]);
-            int mines = Integer.parseInt(values[2]);
-            g = new Game(rows, cols, mines);
-            c.w.write(g.getBoard());
-        }
+        boolean playable = false;
         do{
-            String line = c.r.read();
+            try{
+                String line = c.reader.read();
+                String[] values = line.split(" ");
+                int rows = Integer.parseInt(values[0]);
+                int cols = Integer.parseInt(values[1]);
+                int mines = Integer.parseInt(values[2]);
+                playable = mines < (rows*cols);
+                if(playable){
+                    g = new Game(rows, cols, mines);
+                    c.writer.write(g.getBoard());
+                }else{
+                    System.out.println();
+                    g = null;
+                }
+            }catch(Exception e){
+                System.out.println();
+                g = null;
+            }
+        }while(!playable);
+        do{
+            String line = c.reader.read();
             c.play(line, g);
-            c.w.write(g.getBoard());
+            c.writer.write(g.getBoard());
         }while(g.checkBoard());
     }
     
